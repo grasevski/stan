@@ -6,6 +6,8 @@ import (
 	"os"
 )
 
+const contentTypeHeader, contentType = "Content-Type", "application/json"
+
 func main() {
 	http.HandleFunc("/", stan)
 	var port = os.Getenv("PORT")
@@ -29,6 +31,7 @@ type entry struct {
 
 func stan(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
+	w.Header().Set(contentTypeHeader, contentType)
 	var (
 		req struct {
 			Payload []struct {

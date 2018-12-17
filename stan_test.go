@@ -263,11 +263,14 @@ func TestStan(t *testing.T) {
 		check(err)
 		var rr = httptest.NewRecorder()
 		handler.ServeHTTP(rr, req)
+		if ctype := rr.Header().Get(contentTypeHeader); ctype != contentType {
+			t.Errorf("#%v content type: got %v want %v", i, ctype, contentType)
+		}
 		if rr.Code != x.status {
 			t.Errorf("#%v status: got %v want %v", i, rr.Code, x.status)
 		}
-		if rr.Body.String() != x.expected {
-			t.Errorf("#%v body: got %v want %v", i, rr.Body.String(), x.expected)
+		if body := rr.Body.String(); body != x.expected {
+			t.Errorf("#%v body: got %v want %v", i, body, x.expected)
 		}
 	}
 }
