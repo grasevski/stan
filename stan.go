@@ -3,11 +3,16 @@ package main
 import (
 	"encoding/json"
 	"net/http"
+	"os"
 )
 
 func main() {
 	http.HandleFunc("/", stan)
-	check(http.ListenAndServe(":8080", nil))
+	var port = os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+	check(http.ListenAndServe(":" + port, nil))
 }
 
 func check(err error) {
