@@ -53,9 +53,9 @@ func stan(w http.ResponseWriter, r *http.Request) {
 		}{"Could not decode request: JSON parsing failed"}))
 		return
 	}
-	var res struct {
+	var res = struct {
 		Response []entry `json:"response"`
-	}
+	}{[]entry{}}
 	for _, x := range req.Payload {
 		if x.Drm && x.EpisodeCount > 0 {
 			res.Response = append(res.Response, entry{x.Image.ShowImage, x.Slug, x.Title})
