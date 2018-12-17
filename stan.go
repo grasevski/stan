@@ -12,7 +12,7 @@ func main() {
 	if port == "" {
 		port = "8080"
 	}
-	check(http.ListenAndServe(":" + port, nil))
+	check(http.ListenAndServe(":"+port, nil))
 }
 
 func check(err error) {
