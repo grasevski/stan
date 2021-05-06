@@ -1,6 +1,0 @@
-{
-	"ImportPath": "github.com/grasevski/stan",
-	"GoVersion": "go1.11",
-	"GodepVersion": "v80",
-	"Deps": []
-}
